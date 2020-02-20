@@ -71,6 +71,8 @@ main {
 .goods-item {
     width: calc(20% - 10px);
     margin-bottom: 20px;
+    margin-left: 4px;
+    margin-right: 4px;
     border: 1px solid darkred;
     text-align: center;
 }
