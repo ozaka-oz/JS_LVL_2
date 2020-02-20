@@ -41,9 +41,7 @@ const goods = [
     },
 ];
 
-const renderGoodsItem = (title, price, img = 'default_picture.jpg') => {
-    return `<div class="goods-item"><img src="${img}" alt="${title}"><h3>${title}</h3><p class="price">${price} руб.</p></div>`;
-};
+const renderGoodsItem = (title, price, img = 'default_picture.jpg') => `<div class="goods-item"><img src="${img}" alt="${title}"><h3>${title}</h3><p class="price">${price} руб.</p><div class="btn_basket">В корзину</div></div>`;
 
 const renderGoodsList = (list) => {
     let goodsList = list.map(item => renderGoodsItem(item.title, item.price));
