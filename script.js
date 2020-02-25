@@ -1,6 +1,8 @@
 class ProductsList {
-    constructor(container = '.goods-list') {
+    constructor(container = '.goods-list', calc = '.calculate') {
         this.container = container;
+        this.calc = calc;
+        this.allProductsPrices = [];
         this.goods = [];
         this.allProducts = [];
         this._fetchProducts();
@@ -60,7 +62,7 @@ class ProductsList {
     },
         ];
     }
-    
+
     render() {
         const block = document.querySelector(this.container);
         for (let itemProduct of this.goods) {
@@ -70,6 +72,28 @@ class ProductsList {
         }
     }
 
+    sumAllGoods() {
+        const calcBlock = document.querySelector(this.calc);
+        for (let itemProduct of this.goods) {
+            const productPrice = new ProductItemPrice(itemProduct);
+            this.allProductsPrices.push(productPrice.showPrice());
+        }
+        let resultSum = this.allProductsPrices.reduce(function (sum, current) {
+            return sum + current;
+        }, 0);
+        console.log(resultSum);
+        calcBlock.insertAdjacentHTML('beforeend', `Общая стоимость товаров ${resultSum}`)
+    }
+}
+
+class ProductItemPrice {
+    constructor(productPrice) {
+        this.price = productPrice.price;
+    }
+
+    showPrice() {
+        return this.price;
+    }
 }
 
 class ProductItem {
@@ -78,7 +102,6 @@ class ProductItem {
         this.price = product.price;
         this.id = product.id;
         this.img = img;
-
     }
 
     render() {
@@ -96,8 +119,10 @@ class basketItem {
     plusBasketItem() {};
     minusBasketItem() {};
     deleteBasketItem() {};
-    
+
 }
 
+
 let list = new ProductsList();
+list.sumAllGoods();
 list.render();
