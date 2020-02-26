@@ -72,28 +72,24 @@ class ProductsList {
         }
     }
 
-    sumAllGoods() {
+    getSum() {
         const calcBlock = document.querySelector(this.calc);
-        for (let itemProduct of this.goods) {
-            const productPrice = new ProductItemPrice(itemProduct);
-            this.allProductsPrices.push(productPrice.showPrice());
-        }
-        let resultSum = this.allProductsPrices.reduce(function (sum, current) {
-            return sum + current;
-        }, 0);
-        console.log(resultSum);
+        let resultSum = this.allProducts.reduce((sum, current) => sum += current.price, 0);
         calcBlock.insertAdjacentHTML('beforeend', `Общая стоимость товаров ${resultSum}`)
     }
-}
-
-class ProductItemPrice {
-    constructor(productPrice) {
-        this.price = productPrice.price;
-    }
-
-    showPrice() {
-        return this.price;
-    }
+    
+//    Это то решение которое я сделал до просмотра 3-го урока. Теперь понимаю что оно не оптимально.
+//    sumAllGoods() {
+//        const calcBlock = document.querySelector(this.calc);
+//        for (let itemProduct of this.goods) {
+//            const productPrice = itemProduct.price;
+//            this.allProductsPrices.push(productPrice);
+//        }
+//        let resultSum = this.allProductsPrices.reduce(function (sum, current) {
+//            return sum + current;
+//        }, 0);
+//        calcBlock.insertAdjacentHTML('beforeend', `Общая стоимость товаров ${resultSum}`)
+//    }
 }
 
 class ProductItem {
@@ -109,20 +105,21 @@ class ProductItem {
     }
 }
 
-class basket {
-    addBaket() {};
-    removeBasket() {};
-    clearBasket() {};
-}
-
-class basketItem {
-    plusBasketItem() {};
-    minusBasketItem() {};
-    deleteBasketItem() {};
-
-}
+//class basket {
+//    addBaket() {};
+//    removeBasket() {};
+//    clearBasket() {};
+//}
+//
+//class basketItem {
+//    plusBasketItem() {};
+//    minusBasketItem() {};
+//    deleteBasketItem() {};
+//
+//}
 
 
 let list = new ProductsList();
-list.sumAllGoods();
 list.render();
+list.getSum();
+//list.sumAllGoods();
