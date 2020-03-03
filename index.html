@@ -8,11 +8,20 @@
 
 <body>
     <header>
-        <div class="calculate"></div>
-        <button class="cart-button" type="button">Корзина</button>
+<!--        <div class="calculate"></div>-->
+        <div class="cart">
+           <form action="#" class="search-form">
+               <input type="text" class="search-field">
+               <button class="btn-search" type="submit">
+                   <i class="fas fa-search">RR</i>
+               </button>
+           </form>
+            <button class="btn-cart" type="button">Корзина</button>
+            <div class="cart-block invisible"></div>
+        </div>
     </header>
     <main>
-        <div class="goods-list"></div>
+        <div class="products"></div>
     </main>
     <script src="script.js"></script>
 </body>
